@@ -1,16 +1,21 @@
-import '@/app/ui/global.css'; // Import your global styles
-import { inter } from './ui/fonts'; // Import your custom font
-import Footer from './Components/footer/Footer';
-import NavBar from './Components/nav/NavBar';
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+const inter = Inter({ subsets: ["latin"] });
+
+export const metadata: Metadata = {
+  title: "xclusive shop",
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} antialiased`}>
-        {children}
-        <Footer />
-        
-      </body>
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }
