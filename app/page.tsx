@@ -1,15 +1,19 @@
+import Image from 'next/image';
+import Navbar from './Components/navbar';
+import Container from './Components/container/Container';
+import Hero from './Components/Hero/page';
+import HomeCotizar from './Cotizar/MoodCotizar/homeCotizar';
+import Catalogo from './Components/Catalogo/Catalogo';
 
-import React from 'react';
-import Container from "./Components/Container";
-import HomeBanner from "./Components/HomeBanner";
-import NavBar from './Components/nav/NavBar';
-
-
-
-export default function Page() {
+export default async function Home() {
+  // const user = await getCurrentUser()
+  // console.log(user)
   return (
-    <div className='px-5 max-w-[1280px] mx-auto'>
-        <NavBar />
+    <div className="mx-auto px-5">
+      <Navbar />
+      <HomeCotizar />
+      {/* <Hero /> */}
+      <Container />
     </div>
   );
 }
