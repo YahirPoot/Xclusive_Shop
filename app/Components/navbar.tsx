@@ -7,14 +7,14 @@ import { CiShoppingCart } from 'react-icons/ci';
 import { BiSearch } from 'react-icons/bi';
 import { BsChevronCompactUp } from 'react-icons/bs';
 // import SearchBar from './SearchBar'
-// import {signIn, signOut, useSession } from 'next-auth/react'
+//import {signIn, signOut, useSession } from 'next-auth/react'
 
 type Props = {};
 
 const Navbar = (props: Props) => {
   const [showProfile, setShowProfile] = useState<boolean>(false);
   const [showNav, setShowNav] = useState<boolean>(false);
-  // const {data:session} = useSession()
+  //const {data:session} = useSession()
   // console.log(session?.user)
 
   // const SignOut = () => {
@@ -34,7 +34,10 @@ const Navbar = (props: Props) => {
   //     )
   // }
   return (
-    <div className=" sticky top-0 w-full z-50" style={{ background: '#ffffff' }}>
+    <div
+      className=" sticky top-0 z-50 w-full"
+      style={{ background: '#ffffff' }}
+    >
       <div className="top-0 flex w-full items-center justify-between border-b-[1px] py-4">
         <div className="flex items-center md:space-x-10 lg:space-x-20 ">
           <div className="text-2xl font-semibold">
@@ -49,9 +52,9 @@ const Navbar = (props: Props) => {
             {
               <ul className="flex items-end space-x-7 text-[15px] opacity-70 lg:space-x-10">
                 <li>
-                  <a href="/iniciarSesion" className="inline-block w-full py-3">
+                  <Link href="/Login" className="inline-block w-full py-3">
                     Iniciar sesion
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a href="/registrarse" className="inline-block w-full py-3">
