@@ -25,15 +25,19 @@ export default function LoginForm() {
       }
       const tokens = await loginApi(credentials);
       if (tokens) {
+
         // Guardar los tokens en localStorage
         localStorage.setItem('token', JSON.stringify(tokens));
         localStorage.setItem('name', tokens.name);
         localStorage.setItem('lastName', tokens.lastName);
+        const idCliente = parseInt(tokens.IdCliente)
+        localStorage.setItem('IdCliente', idCliente.toString());
       
         console.log('los tokens del usuario son', tokens);
+        console.log('el id del cliente es', idCliente);
       
         if (tokens.name === tokens.name) {
-          router.push('/Cotizar');
+          router.push('/');
         }
       } else {
         alert('No se pudo obtener los tokens del usuario');

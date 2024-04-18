@@ -6,6 +6,7 @@ import { CiShoppingCart } from 'react-icons/ci';
 // import {BsChevronCompactUp} from "react-icons/bs"
 import { BiSearch } from 'react-icons/bi';
 import { BsChevronCompactUp } from 'react-icons/bs';
+import LongOut from './nav/longOut';
 // import SearchBar from './SearchBar'
 //import {signIn, signOut, useSession } from 'next-auth/react'
 
@@ -14,6 +15,14 @@ type Props = {};
 const Navbar = (props: Props) => {
   const [showProfile, setShowProfile] = useState<boolean>(false);
   const [showNav, setShowNav] = useState<boolean>(false);
+  const token = localStorage.getItem('token');
+  const name = localStorage.getItem('name');
+  const handleLogout = () => {
+    // Aquí va tu código para cerrar la sesión, por ejemplo:
+    localStorage.removeItem('token');
+    // Recargar la página
+    location.reload();
+  };
   //const {data:session} = useSession()
   // console.log(session?.user)
 
@@ -48,7 +57,35 @@ const Navbar = (props: Props) => {
           </div>
         </div>
         <div className="flex items-center space-x-4">
-          <nav className="max-md:hidden">
+          <nav className='max-md:hidden'>
+            {token ? (
+              <ul>
+                <li>
+                  <p>{name}</p>
+                </li>
+                <li onClick={handleLogout}>
+                  <LongOut />
+                </li>
+              </ul>
+            ) : (
+              <ul className="flex items-end space-x-7 text-[15px] opacity-70 lg:space-x-10">
+                <li>
+                  <Link href="/Login" className="inline-block w-full py-3">
+                    Iniciar sesion
+                  </Link>
+                </li>
+                <li>
+                  <a href="/registrarse" className="inline-block w-full py-3">
+                    Crear cuenta
+                  </a>
+                </li>
+                <li>
+                  <button className="inline-block w-full py-3">Cotizar</button>
+                </li>
+              </ul>
+            )}
+          </nav>
+          {/* <nav className="max-md:hidden">
             {
               <ul className="flex items-end space-x-7 text-[15px] opacity-70 lg:space-x-10">
                 <li>
@@ -66,8 +103,8 @@ const Navbar = (props: Props) => {
                 </li>
               </ul>
             }
-          </nav>
-          <span
+          </nav> */}
+          {/* <span
             onClick={() => setShowNav(!showNav)}
             className="rounded-full bg-gray-100 p-[9px] md:hidden"
           >
@@ -76,10 +113,11 @@ const Navbar = (props: Props) => {
                 showNav ? 'rotate-180' : '0'
               }`}
             />
-          </span>
+          </span> */}
         </div>
       </div>
-      <div
+      //
+      {/* <div
         className={`md:hidden ${
           showNav ? 'px-5 pb-4' : 'invisible h-0 opacity-0'
         }`}
@@ -112,7 +150,7 @@ const Navbar = (props: Props) => {
             <BiSearch size={20} className="opacity-50" />
           </button>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

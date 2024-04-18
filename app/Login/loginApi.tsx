@@ -40,6 +40,9 @@ const loginApi = async (credentials: Credentials) => {
         ) &&
         decodedToken.hasOwnProperty(
           'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress',
+        ) &&
+        decodedToken.hasOwnProperty(
+          'IdCliente'
         )
       ) {
         const name =
@@ -50,13 +53,14 @@ const loginApi = async (credentials: Credentials) => {
           decodedToken[
             'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress'
           ];
+        const IdCliente = decodedToken['IdCliente'];
         // Utilizar Cookies de js-cookie para establecer y obtener cookies
         cookies().set('token', JSON.stringify(decodedToken), {
           expires: oneDayInSeconds,
         });
         const cookie = cookies().get('token');
         console.log('cookie', cookie);
-        return { tokens: response.data, name: name, lastName: lastName };
+        return { tokens: response.data, name: name, lastName: lastName, IdCliente: IdCliente};
       }
     } else {
       throw new Error('Correo electrónico o contraseña incorrectos');
